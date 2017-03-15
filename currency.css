@@ -1,0 +1,16 @@
+.compactprint td {
+  font-size: 1vw;
+  padding: 0;
+} 
+
+.reftable td {
+  display: block;
+}
+
+/* Larger than mobile screen */
+@media (min-width: 40.0rem) {
+  .reftable td {
+    display: table-cell;
+    font-size: medium;
+  }
+}

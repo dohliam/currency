@@ -1,0 +1,105 @@
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>Currency Conversion</title>
+    <link rel="stylesheet" type="text/css" href="https://dohliam.github.io/dropin-minimal-css/vendor/milligram.min.css">
+    <link rel="stylesheet" type="text/css" href="currency.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="currency.js" type="text/javascript">//</script>
+  </head>
+
+  <body>
+
+    <h2>Currency Conversion</h2>
+
+    <input id="updateBtn" type="button" value="update rates" onclick="updateRate();" accesskey="u"><p>
+
+    <div id="input_text">
+      <h3>Amount</h3> <input type="number" value="1" min="1" id="amt" onkeyup="convCurr()"><br>
+
+      <h3>Currency</h3> <h4>from</h4> <select id="fromCurr" onkeyup="convCurr()">
+        <option value="AUD">AUD</option>
+        <option value="BGN">BGN</option>
+        <option value="BRL">BRL</option>
+        <option value="CAD">CAD</option>
+        <option value="CHF">CHF</option>
+        <option value="CNY">CNY</option>
+        <option value="CZK">CZK</option>
+        <option value="DKK">DKK</option>
+        <option SELECTED value="EUR">EUR</option>
+        <option value="GBP">GBP</option>
+        <option value="HKD">HKD</option>
+        <option value="HRK">HRK</option>
+        <option value="HUF">HUF</option>
+        <option value="IDR">IDR</option>
+        <option value="ILS">ILS</option>
+        <option value="INR">INR</option>
+        <option value="JPY">JPY</option>
+        <option value="KRW">KRW</option>
+        <option value="MXN">MXN</option>
+        <option value="MYR">MYR</option>
+        <option value="NOK">NOK</option>
+        <option value="NZD">NZD</option>
+        <option value="PHP">PHP</option>
+        <option value="PLN">PLN</option>
+        <option value="RON">RON</option>
+        <option value="RUB">RUB</option>
+        <option value="SEK">SEK</option>
+        <option value="SGD">SGD</option>
+        <option value="THB">THB</option>
+        <option value="TRY">TRY</option>
+        <option value="USD">USD</option>
+        <option value="ZAR">ZAR</option>
+      </select>
+
+      <h4>to</h4> <select id="toCurr" onkeyup="convCurr()">
+        <option value="AUD">AUD</option>
+        <option value="BGN">BGN</option>
+        <option value="BRL">BRL</option>
+        <option value="CAD">CAD</option>
+        <option value="CHF">CHF</option>
+        <option value="CNY">CNY</option>
+        <option value="CZK">CZK</option>
+        <option value="DKK">DKK</option>
+        <option value="EUR">EUR</option>
+        <option value="GBP">GBP</option>
+        <option value="HKD">HKD</option>
+        <option value="HRK">HRK</option>
+        <option value="HUF">HUF</option>
+        <option value="IDR">IDR</option>
+        <option value="ILS">ILS</option>
+        <option value="INR">INR</option>
+        <option value="JPY">JPY</option>
+        <option value="KRW">KRW</option>
+        <option value="MXN">MXN</option>
+        <option value="MYR">MYR</option>
+        <option value="NOK">NOK</option>
+        <option value="NZD">NZD</option>
+        <option value="PHP">PHP</option>
+        <option value="PLN">PLN</option>
+        <option value="RON">RON</option>
+        <option value="RUB">RUB</option>
+        <option value="SEK">SEK</option>
+        <option value="SGD">SGD</option>
+        <option value="THB">THB</option>
+        <option value="TRY">TRY</option>
+        <option value="USD">USD</option>
+        <option value="ZAR">ZAR</option>
+      </select>
+
+      <br>
+      <input id="convBtn" type="button" value="convert" onclick="convCurr();" accesskey="c"><p>
+    </div>
+
+    <div id="asof">&nbsp;</div>
+    <div id="result">&nbsp;</div>
+
+    <br>
+    <br>
+    <div id="resultTable">&nbsp;</div>
+
+    <div id="printableArea" class="compactprint" style="display:none">&nbsp;</div>
+    <input id="printButton" type="button" onclick="printDiv('printableArea')" style="display:none" value="Print reference table" accesskey="p" />
+
+  </body>
+</html>
