@@ -130,25 +130,26 @@ function localRate(rateObj) {
 }
 
 function updateRate() {
+  var requestURL = 'https://api.exchangerate.host/latest';
   var request = new XMLHttpRequest();
-  try {
-    request.open("GET", "https://CORS-Anywhere.HerokuApp.com/https://www.ecb.europa.eu/stats/eurofxref/eurofxref-daily.xml", false);
-  }
-  catch(err) {
-    request.open("GET", "https://crossorigin.me/https://www.ecb.europa.eu/stats/eurofxref/eurofxref-daily.xml", false);
-  }
+  request.open('GET', requestURL);
+  request.responseType = 'json';
   request.send();
-  var xml = request.responseXML;
-  var cube = xml.getElementsByTagName("Cube");
-  var time = cube[1].attributes[0].value;
 
-  var rateObj = new Object();
-  rateObj["time"] = time;
-  rateObj["EUR"] = 1;
-  cubeImport(cube, rateObj);
-  setStorage(rateObj);
+  request.onload = function() {
+    var response = request.response;
+    // console.log(response);
+    // console.log(response["rates"]["CAD"]);
+    var time = response["date"];
+    var rates = response["rates"];
 
-  updateTime(time);
+    var rateObj = new Object();
+    rateObj["time"] = time;
+
+    rateImport(rates, rateObj);
+    setStorage(rateObj);
+    updateTime(time);
+  }
 }
 
 function updateTime(time) {
@@ -160,6 +161,15 @@ function cubeImport(cube, rateObj) {
   for(var i = 2; i < cube.length; i++) {
     var currency = cube[i].attributes[0].value;
     var rate = cube[i].attributes[1].value;
+    rateObj[currency] = rate;
+  }
+}
+
+function rateImport(rates, rateObj) {
+  var len = Object.keys(rates).length;
+  for(var i = 0; i < len; i++) {
+    var currency = Object.keys(rates)[i];
+    var rate = rates[currency];
     rateObj[currency] = rate;
   }
 }
